@@ -17,7 +17,7 @@ let package = Package(
     targets: [
         
         //MARK: - Data Layer
-        // Dependency Inversion : UseCase <- Repository <- DataSource
+        // Dependency Inversion : UseCase(DomainLayer) <- Repository <-> DataSource
         .target(
             name: "DataLayer",
             dependencies: ["DomainLayer"]),
@@ -28,14 +28,9 @@ let package = Package(
             dependencies: []),
         
         //MARK: - Presentation Layer (MVVM)
-        // Dependency : View -> ViewModel -> Model & UseCase
+        // Dependency : View -> ViewModel -> Model(DomainLayer)
         .target(
             name: "PresentationLayer",
             dependencies: ["DomainLayer"]),
-        
-        
-//        .testTarget(
-//            name: "CleanArchitectureWithMVVMSPMTests",
-//            dependencies: ["CleanArchitectureWithMVVMSPM"]),
     ]
 )

@@ -23,13 +23,13 @@ let package = Package(
             path: "Sources/DataSource"),
         .target(
             name: "Repository",
-            dependencies: ["DataSource", "Model"],
+            dependencies: ["DataSource", "Model", "UseCase"],
             path: "Sources/Repository"),
         
         //MARK: - Domain Layer
         .target(
             name: "UseCase",
-            dependencies: ["Repository", "Model"],
+            dependencies: ["Model"],
             path: "Sources/UseCase"),
         .target(
             name: "Model",

@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+public struct MyGroupEntity: Identifiable {
+    public let id: String
+    let image: String
+    let name: String
+    let date: String
+}

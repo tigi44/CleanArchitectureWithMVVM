@@ -6,8 +6,7 @@
 //
 
 import SwiftUI
-import Model
-import ViewModel
+import DomainLayer
 
 public struct GroupView: View {
     

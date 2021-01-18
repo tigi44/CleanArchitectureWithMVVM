@@ -7,9 +7,7 @@
 
 import Foundation
 import Combine
-import Model
-import UseCase
-import DataSource
+import DomainLayer
 
 public final class GroupRepository: GroupRepositoryInterface {
     

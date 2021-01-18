@@ -7,7 +7,6 @@
 
 import Foundation
 import Combine
-import Model
 
 public protocol FetchMyGroupListUseCaseInterface {
     func execute(completion: @escaping (Result<[MyGroupEntity], Error>) -> Void) -> Cancellable?

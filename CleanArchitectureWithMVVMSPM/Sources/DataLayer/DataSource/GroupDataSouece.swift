@@ -7,7 +7,7 @@
 
 import Foundation
 import Combine
-import Model
+import DomainLayer
 
 public struct GroupModel: Codable {
     let image: String

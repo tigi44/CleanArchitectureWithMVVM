@@ -9,7 +9,8 @@ let package = Package(
     products: [
         .library(
             name: "CleanArchitectureWithMVVMSPM",
-            targets: ["View", "ViewModel", "Model", "UseCase", "Repository", "DataSource"]),
+            targets: ["DataLayer", "DomainLayer", "PresentationLayer"]),
+        
     ],
     dependencies: [
     ],
@@ -18,34 +19,19 @@ let package = Package(
         //MARK: - Data Layer
         // Dependency Inversion : UseCase <- Repository <- DataSource
         .target(
-            name: "DataSource",
-            dependencies: ["Model"],
-            path: "Sources/DataSource"),
-        .target(
-            name: "Repository",
-            dependencies: ["DataSource", "Model", "UseCase"],
-            path: "Sources/Repository"),
+            name: "DataLayer",
+            dependencies: ["DomainLayer"]),
         
         //MARK: - Domain Layer
         .target(
-            name: "UseCase",
-            dependencies: ["Model"],
-            path: "Sources/UseCase"),
-        .target(
-            name: "Model",
-            dependencies: [],
-            path: "Sources/Model"),
+            name: "DomainLayer",
+            dependencies: []),
         
         //MARK: - Presentation Layer (MVVM)
         // Dependency : View -> ViewModel -> Model & UseCase
         .target(
-            name: "ViewModel",
-            dependencies: ["UseCase", "Model"],
-            path: "Sources/ViewModel"),
-        .target(
-            name: "View",
-            dependencies: ["ViewModel", "Model"],
-            path: "Sources/View"),
+            name: "PresentationLayer",
+            dependencies: ["DomainLayer"]),
         
         
 //        .testTarget(

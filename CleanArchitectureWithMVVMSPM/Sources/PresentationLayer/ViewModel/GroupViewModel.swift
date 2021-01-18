@@ -7,8 +7,7 @@
 
 import Foundation
 import Combine
-import Model
-import UseCase
+import DomainLayer
 
 public protocol MyGroupListViewModelInput {
     func didFetch()

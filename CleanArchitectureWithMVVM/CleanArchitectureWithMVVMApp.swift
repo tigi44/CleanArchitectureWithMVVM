@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import PresentationLayer
 
 @main
 struct CleanArchitectureWithMVVMApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            GroupView(viewModel: AppDI.shared.myGroupListDependencies())
         }
     }
 }

@@ -6,3 +6,36 @@
 //
 
 import Foundation
+import Combine
+import Model
+import UseCase
+
+public protocol MyGroupListViewModelInput {
+    func didFetch()
+}
+
+public protocol MyGroupListViewModelOutput {
+    var myGroups: [MyGroupEntity] { get }
+}
+
+public final class MyGroupListViewModel: ObservableObject, MyGroupListViewModelInput, MyGroupListViewModelOutput {
+    
+    private let fetchMyGroupListUseCase: FetchMyGroupListUseCaseInterface
+    
+    @Published public var myGroups: [MyGroupEntity] = []
+    
+    public init(fetchMyGroupListUseCase: FetchMyGroupListUseCaseInterface) {
+        self.fetchMyGroupListUseCase = fetchMyGroupListUseCase
+    }
+    
+    public func didFetch() {
+        var _ = fetchMyGroupListUseCase.execute { result in
+            switch result {
+            case .success(let myGroups):
+                self.myGroups = myGroups
+            case .failure:
+                break
+            }
+        }
+    }
+}

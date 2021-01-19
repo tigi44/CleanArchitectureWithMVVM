@@ -38,6 +38,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E5FBCC825B5D0DA006FA2B3 /* DependecyInjection */ = {
+			isa = PBXGroup;
+			children = (
+				0E6497B225B58EED00024C92 /* AppDI.swift */,
+				0EF1350525B5B0F4003B98FA /* MyGroupDI.swift */,
+			);
+			path = DependecyInjection;
+			sourceTree = "<group>";
+		};
 		0E64978E25B55DC400024C92 = {
 			isa = PBXGroup;
 			children = (
@@ -59,9 +68,8 @@
 		0E64979925B55DC400024C92 /* CleanArchitectureWithMVVM */ = {
 			isa = PBXGroup;
 			children = (
+				0E5FBCC825B5D0DA006FA2B3 /* DependecyInjection */,
 				0E64979A25B55DC400024C92 /* CleanArchitectureWithMVVMApp.swift */,
-				0E6497B225B58EED00024C92 /* AppDI.swift */,
-				0EF1350525B5B0F4003B98FA /* MyGroupDI.swift */,
 				0E64979E25B55DC600024C92 /* Assets.xcassets */,
 				0E6497A325B55DC600024C92 /* Info.plist */,
 				0E6497A025B55DC600024C92 /* Preview Content */,

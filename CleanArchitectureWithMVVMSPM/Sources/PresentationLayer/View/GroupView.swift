@@ -22,10 +22,10 @@ public struct GroupView: View {
                     .cornerRadius(5)
                 VStack(alignment: .leading) {
                     Text(myGroupEntity.name)
-                        .font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
+                        .font(.headline)
                         .fontWeight(.regular)
                     Text(myGroupEntity.date)
-                        .font(/*@START_MENU_TOKEN@*/.footnote/*@END_MENU_TOKEN@*/)
+                        .font(.footnote)
                 }
             }
         }
@@ -55,7 +55,7 @@ public struct GroupView: View {
             }
         }
         .onAppear {
-            self.viewModel.didFetch()
+            self.viewModel.executeFetch()
         }
     }
 }

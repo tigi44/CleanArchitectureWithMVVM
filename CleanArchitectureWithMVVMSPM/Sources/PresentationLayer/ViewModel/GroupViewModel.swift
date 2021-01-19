@@ -10,7 +10,7 @@ import Combine
 import DomainLayer
 
 public protocol MyGroupListViewModelInput {
-    func didFetch()
+    func executeFetch()
 }
 
 public protocol MyGroupListViewModelOutput {
@@ -27,13 +27,13 @@ public final class MyGroupListViewModel: ObservableObject, MyGroupListViewModelI
         self.fetchMyGroupListUseCase = fetchMyGroupListUseCase
     }
     
-    public func didFetch() {
+    public func executeFetch() {
         var _ = fetchMyGroupListUseCase.execute { result in
             switch result {
             case .success(let myGroups):
                 self.myGroups = myGroups
             case .failure:
-                break
+                self.myGroups = []
             }
         }
     }

@@ -32,5 +32,11 @@ let package = Package(
         .target(
             name: "PresentationLayer",
             dependencies: ["DomainLayer"]),
+        
+        
+        //MARK: - Tests
+        .testTarget(
+            name: "CleanArchitectureWithMVVMSPMTests",
+            dependencies: ["DataLayer", "DomainLayer", "PresentationLayer"])
     ]
 )

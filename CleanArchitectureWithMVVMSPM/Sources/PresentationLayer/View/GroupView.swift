@@ -41,7 +41,7 @@ public struct GroupView: View {
         VStack(alignment: .leading, spacing: 20) {
             HStack {
                 Text("내 그룹 목록")
-                    .font(.title2)
+                    .font(.title)
                     .fontWeight(.bold)
                 Spacer()
             }

@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0E20A53F25BFE0C80083F51D"
+               BuildableName = "CleanArchitectureWithMVVMTests.xctest"
+               BlueprintName = "CleanArchitectureWithMVVMTests"
+               ReferencedContainer = "container:CleanArchitectureWithMVVM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

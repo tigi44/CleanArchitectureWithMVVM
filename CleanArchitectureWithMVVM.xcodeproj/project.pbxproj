@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E20A54325BFE0C80083F51D /* CleanArchitectureWithMVVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E20A54225BFE0C80083F51D /* CleanArchitectureWithMVVMTests.swift */; };
 		0E64979B25B55DC400024C92 /* CleanArchitectureWithMVVMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E64979A25B55DC400024C92 /* CleanArchitectureWithMVVMApp.swift */; };
 		0E64979F25B55DC600024C92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E64979E25B55DC600024C92 /* Assets.xcassets */; };
 		0E6497A225B55DC600024C92 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E6497A125B55DC600024C92 /* Preview Assets.xcassets */; };
@@ -15,7 +16,20 @@
 		0EF1350625B5B0F4003B98FA /* MyGroupDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF1350525B5B0F4003B98FA /* MyGroupDI.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0E20A54525BFE0C80083F51D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E64978F25B55DC400024C92 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0E64979625B55DC400024C92;
+			remoteInfo = CleanArchitectureWithMVVM;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		0E20A54025BFE0C80083F51D /* CleanArchitectureWithMVVMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CleanArchitectureWithMVVMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E20A54225BFE0C80083F51D /* CleanArchitectureWithMVVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanArchitectureWithMVVMTests.swift; sourceTree = "<group>"; };
+		0E20A54425BFE0C80083F51D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E64979725B55DC400024C92 /* CleanArchitectureWithMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanArchitectureWithMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E64979A25B55DC400024C92 /* CleanArchitectureWithMVVMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanArchitectureWithMVVMApp.swift; sourceTree = "<group>"; };
 		0E64979E25B55DC600024C92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -27,6 +41,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0E20A53D25BFE0C80083F51D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0E64979425B55DC400024C92 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -38,6 +59,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E20A54125BFE0C80083F51D /* CleanArchitectureWithMVVMTests */ = {
+			isa = PBXGroup;
+			children = (
+				0E20A54225BFE0C80083F51D /* CleanArchitectureWithMVVMTests.swift */,
+				0E20A54425BFE0C80083F51D /* Info.plist */,
+			);
+			path = CleanArchitectureWithMVVMTests;
+			sourceTree = "<group>";
+		};
 		0E5FBCC825B5D0DA006FA2B3 /* DependecyInjection */ = {
 			isa = PBXGroup;
 			children = (
@@ -52,6 +82,7 @@
 			children = (
 				0E6497AA25B55E0800024C92 /* CleanArchitectureWithMVVMSPM */,
 				0E64979925B55DC400024C92 /* CleanArchitectureWithMVVM */,
+				0E20A54125BFE0C80083F51D /* CleanArchitectureWithMVVMTests */,
 				0E64979825B55DC400024C92 /* Products */,
 				0E6497AE25B55F3000024C92 /* Frameworks */,
 			);
@@ -61,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				0E64979725B55DC400024C92 /* CleanArchitectureWithMVVM.app */,
+				0E20A54025BFE0C80083F51D /* CleanArchitectureWithMVVMTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +127,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0E20A53F25BFE0C80083F51D /* CleanArchitectureWithMVVMTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0E20A54925BFE0C80083F51D /* Build configuration list for PBXNativeTarget "CleanArchitectureWithMVVMTests" */;
+			buildPhases = (
+				0E20A53C25BFE0C80083F51D /* Sources */,
+				0E20A53D25BFE0C80083F51D /* Frameworks */,
+				0E20A53E25BFE0C80083F51D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0E20A54625BFE0C80083F51D /* PBXTargetDependency */,
+			);
+			name = CleanArchitectureWithMVVMTests;
+			productName = CleanArchitectureWithMVVMTests;
+			productReference = 0E20A54025BFE0C80083F51D /* CleanArchitectureWithMVVMTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		0E64979625B55DC400024C92 /* CleanArchitectureWithMVVM */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0E6497A625B55DC600024C92 /* Build configuration list for PBXNativeTarget "CleanArchitectureWithMVVM" */;
@@ -124,6 +174,10 @@
 				LastSwiftUpdateCheck = 1230;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
+					0E20A53F25BFE0C80083F51D = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 0E64979625B55DC400024C92;
+					};
 					0E64979625B55DC400024C92 = {
 						CreatedOnToolsVersion = 12.3;
 					};
@@ -143,11 +197,19 @@
 			projectRoot = "";
 			targets = (
 				0E64979625B55DC400024C92 /* CleanArchitectureWithMVVM */,
+				0E20A53F25BFE0C80083F51D /* CleanArchitectureWithMVVMTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0E20A53E25BFE0C80083F51D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0E64979525B55DC400024C92 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -160,6 +222,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0E20A53C25BFE0C80083F51D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E20A54325BFE0C80083F51D /* CleanArchitectureWithMVVMTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0E64979325B55DC400024C92 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -172,7 +242,53 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0E20A54625BFE0C80083F51D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0E64979625B55DC400024C92 /* CleanArchitectureWithMVVM */;
+			targetProxy = 0E20A54525BFE0C80083F51D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		0E20A54725BFE0C80083F51D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = CleanArchitectureWithMVVMTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tigi44.CleanArchitectureWithMVVMTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CleanArchitectureWithMVVM.app/CleanArchitectureWithMVVM";
+			};
+			name = Debug;
+		};
+		0E20A54825BFE0C80083F51D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = CleanArchitectureWithMVVMTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tigi44.CleanArchitectureWithMVVMTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CleanArchitectureWithMVVM.app/CleanArchitectureWithMVVM";
+			};
+			name = Release;
+		};
 		0E6497A425B55DC600024C92 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -334,6 +450,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0E20A54925BFE0C80083F51D /* Build configuration list for PBXNativeTarget "CleanArchitectureWithMVVMTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E20A54725BFE0C80083F51D /* Debug */,
+				0E20A54825BFE0C80083F51D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0E64979225B55DC400024C92 /* Build configuration list for PBXProject "CleanArchitectureWithMVVM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -1,0 +1,11 @@
+os: osx
+osx_image: xcode12.2
+language: swift
+xcode_project: CleanArchitectureWithMVVM.xcodeproj
+xcode_scheme: 
+  - CleanArchitectureWithMVVMSPM
+  - CleanArchitectureWithMVVM
+xcode_destination: platform=iOS Simulator,OS=14,name=iPhone 12
+branches:
+  only:
+    - master

@@ -20,7 +20,16 @@ public final class GroupRepository: GroupRepositoryInterface {
     public func fetchMyGroupList(completion: @escaping (Result<[MyGroupEntity], Error>) -> Void) -> Cancellable? {
         
         return groupDataSource.fetchMyGroupList { result in
-            completion(result)
+            switch result {
+            case .success(let myGroupModels):
+                var myGroupEntities = [MyGroupEntity]()
+                for myGroupModel in myGroupModels {
+                    myGroupEntities.append(myGroupModel.dotMyGroupEntity())
+                }
+                completion(.success(myGroupEntities))
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
 }

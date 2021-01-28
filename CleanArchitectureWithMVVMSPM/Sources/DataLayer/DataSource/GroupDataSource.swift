@@ -21,7 +21,7 @@ public struct GroupModel: Codable {
 }
 
 public protocol GroupDataSourceInterface {
-    func fetchMyGroupList(completion: @escaping (Result<[MyGroupEntity], Error>) -> Void) -> Cancellable?
+    func fetchMyGroupList(completion: @escaping (Result<[GroupModel], Error>) -> Void) -> Cancellable?
 }
 
 public final class GroupLocalDataSource: GroupDataSourceInterface {
@@ -55,12 +55,11 @@ public final class GroupLocalDataSource: GroupDataSourceInterface {
     
     public init() {}
     
-    public func fetchMyGroupList(completion: @escaping (Result<[MyGroupEntity], Error>) -> Void) -> Cancellable? {
+    public func fetchMyGroupList(completion: @escaping (Result<[GroupModel], Error>) -> Void) -> Cancellable? {
         return Just(GroupLocalDataSource.myGroups)
             .tryMap { try JSONSerialization.data(withJSONObject: $0, options: .prettyPrinted) }
             .decode(type: [GroupModel].self, decoder: JSONDecoder())
             .replaceError(with: [])
-            .map({ $0.compactMap { $0.dotMyGroupEntity() }})
             .eraseToAnyPublisher()
             .sink { myGroups in
                 completion(.success(myGroups))
@@ -80,7 +79,7 @@ public final class GroupRemoteDataSource: GroupDataSourceInterface, GroupRemoteD
         self.urlString = urlString
     }
     
-    public func fetchMyGroupList(completion: @escaping (Result<[MyGroupEntity], Error>) -> Void) -> Cancellable? {
+    public func fetchMyGroupList(completion: @escaping (Result<[GroupModel], Error>) -> Void) -> Cancellable? {
         
         return URLSession
             .shared
@@ -88,7 +87,6 @@ public final class GroupRemoteDataSource: GroupDataSourceInterface, GroupRemoteD
             .map(\.data)
             .decode(type: [GroupModel].self, decoder: JSONDecoder())
             .replaceError(with: [])
-            .map({ $0.compactMap { $0.dotMyGroupEntity() }})
             .eraseToAnyPublisher()
             .sink { myGroups in
                 completion(.success(myGroups))

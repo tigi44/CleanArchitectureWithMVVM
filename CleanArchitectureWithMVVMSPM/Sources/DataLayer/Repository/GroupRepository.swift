@@ -24,7 +24,7 @@ public final class GroupRepository: GroupRepositoryInterface {
             case .success(let myGroupModels):
                 var myGroupEntities = [MyGroupEntity]()
                 for myGroupModel in myGroupModels {
-                    myGroupEntities.append(myGroupModel.dotMyGroupEntity())
+                    myGroupEntities.append(myGroupModel.dtoMyGroupEntity())
                 }
                 completion(.success(myGroupEntities))
             case .failure(let error):

@@ -3,7 +3,7 @@ import Combine
 @testable import DataLayer
 @testable import DomainLayer
 
-final class GroupModelTests: XCTestCase {
+final class GroupModelDTOTests: XCTestCase {
     
     let group = [
         "image": "group1",
@@ -18,11 +18,11 @@ final class GroupModelTests: XCTestCase {
     
     //MARK: - Tests
     
-    func testGroupModel() {
+    func testGroupModelDTO() {
         
         let _ = Just(group)
             .tryMap { try JSONSerialization.data(withJSONObject: $0, options: []) }
-            .decode(type: GroupModel.self, decoder: JSONDecoder())
+            .decode(type: GroupModelDTO.self, decoder: JSONDecoder())
             .sink { result in
                 switch result {
                 case .finished:
@@ -35,7 +35,7 @@ final class GroupModelTests: XCTestCase {
                 XCTAssertEqual(groupModel.name, self.group["name"])
                 XCTAssertEqual(groupModel.date, self.group["date"])
                 
-                let groupEntity = groupModel.dotMyGroupEntity()
+                let groupEntity = groupModel.dtoMyGroupEntity()
                 XCTAssertEqual(groupEntity.id, groupModel.name)
                 XCTAssertEqual(groupEntity.image, groupModel.image)
                 XCTAssertEqual(groupEntity.name, groupModel.name)
@@ -44,6 +44,6 @@ final class GroupModelTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testGroupModel", testGroupModel),
+        ("testGroupModelDTO", testGroupModelDTO),
     ]
 }

@@ -9,19 +9,19 @@ import Foundation
 import Combine
 import DomainLayer
 
-public struct GroupModel: Codable {
+public struct GroupModelDTO: Codable {
     let image: String
     let name: String
     let date: String
     
-    // DOT: Data Object Transfer
-    public func dotMyGroupEntity() -> MyGroupEntity {
+    // DTO: Data Transfer Object
+    public func dtoMyGroupEntity() -> MyGroupEntity {
         return MyGroupEntity(id: self.name, image: self.image, name: self.name, date: self.date)
     }
 }
 
 public protocol GroupDataSourceInterface {
-    func fetchMyGroupList(completion: @escaping (Result<[GroupModel], Error>) -> Void) -> Cancellable?
+    func fetchMyGroupList(completion: @escaping (Result<[GroupModelDTO], Error>) -> Void) -> Cancellable?
 }
 
 public final class GroupLocalDataSource: GroupDataSourceInterface {
@@ -55,10 +55,10 @@ public final class GroupLocalDataSource: GroupDataSourceInterface {
     
     public init() {}
     
-    public func fetchMyGroupList(completion: @escaping (Result<[GroupModel], Error>) -> Void) -> Cancellable? {
+    public func fetchMyGroupList(completion: @escaping (Result<[GroupModelDTO], Error>) -> Void) -> Cancellable? {
         return Just(GroupLocalDataSource.myGroups)
             .tryMap { try JSONSerialization.data(withJSONObject: $0, options: .prettyPrinted) }
-            .decode(type: [GroupModel].self, decoder: JSONDecoder())
+            .decode(type: [GroupModelDTO].self, decoder: JSONDecoder())
             .replaceError(with: [])
             .eraseToAnyPublisher()
             .sink { myGroups in
@@ -79,13 +79,13 @@ public final class GroupRemoteDataSource: GroupDataSourceInterface, GroupRemoteD
         self.urlString = urlString
     }
     
-    public func fetchMyGroupList(completion: @escaping (Result<[GroupModel], Error>) -> Void) -> Cancellable? {
+    public func fetchMyGroupList(completion: @escaping (Result<[GroupModelDTO], Error>) -> Void) -> Cancellable? {
         
         return URLSession
             .shared
             .dataTaskPublisher(for: URL(string: urlString)!)
             .map(\.data)
-            .decode(type: [GroupModel].self, decoder: JSONDecoder())
+            .decode(type: [GroupModelDTO].self, decoder: JSONDecoder())
             .replaceError(with: [])
             .eraseToAnyPublisher()
             .sink { myGroups in

@@ -26,7 +26,3 @@ public final class FetchMyGroupListUseCase: FetchMyGroupListUseCaseInterface {
         }
     }
 }
-
-public protocol GroupRepositoryInterface {
-    func fetchMyGroupList(completion: @escaping (Result<[MyGroupEntity], Error>) -> Void) -> Cancellable?
-}

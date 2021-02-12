@@ -1,7 +1,11 @@
 import XCTest
 
-import CleanArchitectureWithMVVMSPMTests
+import DomainLayerTests
+import DataLayerTests
+import PresentationLayerTests
 
 var tests = [XCTestCaseEntry]()
-tests += CleanArchitectureWithMVVMSPMTests.allTests()
+tests += DomainLayerTests.allTests()
+tests += DataLayerTests.allTests()
+tests += PresentationLayerTests.allTests()
 XCTMain(tests)

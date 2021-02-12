@@ -13,7 +13,6 @@
 		0E6497A225B55DC600024C92 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E6497A125B55DC600024C92 /* Preview Assets.xcassets */; };
 		0E6497B025B55F3000024C92 /* CleanArchitectureWithMVVMSPM in Frameworks */ = {isa = PBXBuildFile; productRef = 0E6497AF25B55F3000024C92 /* CleanArchitectureWithMVVMSPM */; };
 		0E6497B325B58EED00024C92 /* AppDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6497B225B58EED00024C92 /* AppDI.swift */; };
-		0EF1350625B5B0F4003B98FA /* MyGroupDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF1350525B5B0F4003B98FA /* MyGroupDI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +36,6 @@
 		0E6497A325B55DC600024C92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E6497AA25B55E0800024C92 /* CleanArchitectureWithMVVMSPM */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CleanArchitectureWithMVVMSPM; sourceTree = "<group>"; };
 		0E6497B225B58EED00024C92 /* AppDI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDI.swift; sourceTree = "<group>"; };
-		0EF1350525B5B0F4003B98FA /* MyGroupDI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupDI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +70,6 @@
 			isa = PBXGroup;
 			children = (
 				0E6497B225B58EED00024C92 /* AppDI.swift */,
-				0EF1350525B5B0F4003B98FA /* MyGroupDI.swift */,
 			);
 			path = DependecyInjection;
 			sourceTree = "<group>";
@@ -236,7 +233,6 @@
 			files = (
 				0E6497B325B58EED00024C92 /* AppDI.swift in Sources */,
 				0E64979B25B55DC400024C92 /* CleanArchitectureWithMVVMApp.swift in Sources */,
-				0EF1350625B5B0F4003B98FA /* MyGroupDI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

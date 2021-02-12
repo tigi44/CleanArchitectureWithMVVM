@@ -12,7 +12,7 @@ import PresentationLayer
 struct CleanArchitectureWithMVVMApp: App {
     var body: some Scene {
         WindowGroup {
-            MyGroupListView(viewModel: AppDI.shared.myGroupListDependencies())
+            DailyWeatherView(viewModel: AppDI.shared.dailyWeatherDependencies())
         }
     }
 }

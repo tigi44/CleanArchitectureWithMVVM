@@ -60,7 +60,7 @@ private struct WeatherView: View {
     var body: some View {
         HStack(spacing: 20) {
             
-            Image(uiImage: UIImage(named: icon, in: Bundle.module, compatibleWith: nil)!)
+            Image(icon, bundle: Bundle.module)
             
             VStack(alignment: .leading) {
                 Text(formatter.string(from: date))

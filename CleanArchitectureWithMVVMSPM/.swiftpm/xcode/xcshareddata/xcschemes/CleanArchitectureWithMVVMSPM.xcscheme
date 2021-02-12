@@ -32,9 +32,29 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CleanArchitectureWithMVVMSPMTests"
-               BuildableName = "CleanArchitectureWithMVVMSPMTests"
-               BlueprintName = "CleanArchitectureWithMVVMSPMTests"
+               BlueprintIdentifier = "DomainLayerTests"
+               BuildableName = "DomainLayerTests"
+               BlueprintName = "DomainLayerTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DataLayerTests"
+               BuildableName = "DataLayerTests"
+               BlueprintName = "DataLayerTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "PresentationLayerTests"
+               BuildableName = "PresentationLayerTests"
+               BlueprintName = "PresentationLayerTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>

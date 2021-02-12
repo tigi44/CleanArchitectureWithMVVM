@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import DataLayer
+import DomainLayer
 import PresentationLayer
 
 enum PHASE {
@@ -33,5 +35,28 @@ public class AppDI: AppDIInterface {
         let myGroupListViewModel = myGroupDI.myGroupListDependencies()
                 
         return myGroupListViewModel
+    }
+    
+    public func dailyWeatherDependencies() -> DailyWeatherViewModel {
+        
+        //MARK: Data Layer
+        let dataSource: WeatherDataSourceInterface
+        
+        switch appEnvironment.phase {
+        case .DEV:
+            dataSource = WeatherLocalDataSource()
+        default:
+            dataSource = WeatherLocalDataSource()
+        }
+        
+        let repository = WeatherRepository(dataSource: dataSource)
+        
+        //MARK: Domain Layer
+        let useCase = FetchDailyWeatherUseCase(repository: repository)
+        
+        //MARK: Presentation
+        let viewModel = DailyWeatherViewModel(useCase: useCase)
+        
+        return viewModel
     }
 }

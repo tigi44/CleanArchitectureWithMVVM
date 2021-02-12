@@ -9,4 +9,5 @@ import Foundation
 
 public protocol AppDIInterface {
     func myGroupListDependencies() -> MyGroupListViewModel
+    func dailyWeatherDependencies() -> DailyWeatherViewModel
 }

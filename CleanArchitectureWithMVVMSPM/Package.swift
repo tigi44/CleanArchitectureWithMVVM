@@ -36,10 +36,6 @@ let package = Package(
         
         //MARK: - Tests
         .testTarget(
-            name: "CleanArchitectureWithMVVMSPMTests",
-            dependencies: ["DataLayer", "DomainLayer", "PresentationLayer"]),
-        
-        .testTarget(
             name: "DataLayerTests",
             dependencies: ["DataLayer"]),
             

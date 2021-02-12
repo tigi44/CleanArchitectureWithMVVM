@@ -28,15 +28,6 @@ public class AppDI: AppDIInterface {
         self.appEnvironment = appEnvironment
     }
     
-    public func myGroupListDependencies() -> MyGroupListViewModel {
-        
-        let myGroupDI: MyGroupDI = MyGroupDI(appEnvironment: appEnvironment)
-                
-        let myGroupListViewModel = myGroupDI.myGroupListDependencies()
-                
-        return myGroupListViewModel
-    }
-    
     public func dailyWeatherDependencies() -> DailyWeatherViewModel {
         
         //MARK: Data Layer

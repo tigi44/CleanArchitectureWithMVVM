@@ -13,9 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Move to Swift
-      run: cd CleanArchitectureWithMVVMSPM
     - name: Run Build
-      run: swift build -v
+      run: cd CleanArchitectureWithMVVMSPM/ && swift build -v
     - name: Run tests
-      run: swift test -v
+      run: cd CleanArchitectureWithMVVMSPM/ && swift test -v

@@ -6,11 +6,13 @@
 //
 
 import XCTest
+import Combine
 @testable import DataLayer
 
 final class WeatherDataSourceTests: XCTestCase {
     
     var dataSource: WeatherDataSourceInterface?
+    private var bag: Set<AnyCancellable> = Set<AnyCancellable>()
     
     //MARK: - Setup
     
@@ -28,17 +30,21 @@ final class WeatherDataSourceTests: XCTestCase {
     
     func testExecute() {
         
-        let _ = dataSource!.fetchDailyWeather { result in
-            switch result {
-            case .success(let dailtWeather):
-                XCTAssertGreaterThan(dailtWeather.count, 0)
-                for weather in dailtWeather {
+        dataSource!.fetchDailyWeather()
+            .sink { receiveCompletion in
+                switch receiveCompletion {
+                case .failure(let error):
+                    XCTFail(error.localizedDescription)
+                case .finished:
+                    break
+                }
+            } receiveValue: { weatherDTOList in
+                XCTAssertGreaterThan(weatherDTOList.count, 0)
+                for weather in weatherDTOList {
                     XCTAssertNotNil(weather.name)
                 }
-            case .failure(let error):
-                XCTFail(error.localizedDescription)
             }
-        }
+            .store(in: &bag)
     }
 
     static var allTests = [

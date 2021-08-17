@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 public protocol FetchDailyWeatherUseCaseInterface {
-    func execute(completion: @escaping (Result<[WeatherEntity], Error>) -> Void) -> Cancellable?
+    func execute() -> AnyPublisher<[WeatherEntity], Error>
 }
 
 public final class FetchDailyWeatherUseCase: FetchDailyWeatherUseCaseInterface {
@@ -20,9 +20,7 @@ public final class FetchDailyWeatherUseCase: FetchDailyWeatherUseCaseInterface {
         self.repository = repository
     }
 
-    public func execute(completion: @escaping (Result<[WeatherEntity], Error>) -> Void) -> Cancellable? {
-        return repository.fetchDailyWeather { result in
-            completion(result)
-        }
+    public func execute() -> AnyPublisher<[WeatherEntity], Error> {
+        return repository.fetchDailyWeather()
     }
 }

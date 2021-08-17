@@ -20,6 +20,7 @@ public protocol DailyWeatherViewModelOutput {
 public final class DailyWeatherViewModel: ObservableObject, DailyWeatherViewModelInput, DailyWeatherViewModelOutput {
     
     private let useCase: FetchDailyWeatherUseCaseInterface
+    private var bag: Set<AnyCancellable> = Set<AnyCancellable>()
     
     @Published public var dailyWeather: [WeatherEntity] = []
     
@@ -28,13 +29,18 @@ public final class DailyWeatherViewModel: ObservableObject, DailyWeatherViewMode
     }
     
     public func executeFetch() {
-        var _ = useCase.execute { result in
-            switch result {
-            case .success(let dailyWeather):
-                self.dailyWeather = dailyWeather
-            case .failure:
-                self.dailyWeather = []
+        
+        useCase.execute()
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(_):
+                    self.dailyWeather = []
+                }
+            } receiveValue: { weatherList in
+                self.dailyWeather = weatherList
             }
-        }
+            .store(in: &bag)
     }
 }

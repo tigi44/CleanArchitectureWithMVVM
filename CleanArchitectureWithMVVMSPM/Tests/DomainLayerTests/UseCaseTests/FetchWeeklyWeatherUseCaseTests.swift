@@ -10,7 +10,8 @@ import Combine
 @testable import DomainLayer
 
 class MockWeatherRepository: WeatherRepositoryInterface {
-    func fetchDailyWeather(completion: @escaping (Result<[WeatherEntity], Error>) -> Void) -> Cancellable? {
+    
+    func fetchDailyWeather() -> AnyPublisher<[WeatherEntity], Error> {
         
         let dailyWeather = [
             WeatherEntity(id: "weather_mon", icon: "01d", location: "l", temperature: 10.1, description: "sunny", date: Date()),
@@ -23,22 +24,15 @@ class MockWeatherRepository: WeatherRepositoryInterface {
         ]
         
         return Just(dailyWeather)
-            .sink { result in
-                switch result {
-                case .finished:
-                    break
-                case .failure(let error):
-                    XCTFail(error.localizedDescription)
-                }
-            } receiveValue: { dailyWeather in
-                completion(.success(dailyWeather))
-            }
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 }
 
 final class FetchDailyWeatherUseCaseTests: XCTestCase {
     
     var useCase: FetchDailyWeatherUseCaseInterface?
+    private var bag: Set<AnyCancellable> = Set<AnyCancellable>()
     
     //MARK: - Setup
     
@@ -56,17 +50,21 @@ final class FetchDailyWeatherUseCaseTests: XCTestCase {
     
     func testExecute() {
         
-        let _ = useCase!.execute { result in
-            switch result {
-            case .success(let dailyWeather):
-                XCTAssertGreaterThan(dailyWeather.count, 0)
-                for weather in dailyWeather {
+        useCase!.execute()
+            .sink { receiveCompletion in
+                switch receiveCompletion {
+                case .failure(let error):
+                    XCTFail(error.localizedDescription)
+                case .finished:
+                    break
+                }
+            } receiveValue: { weatherList in
+                XCTAssertGreaterThan(weatherList.count, 0)
+                for weather in weatherList {
                     XCTAssertNotNil(weather.id)
                 }
-            case .failure(let error):
-                XCTFail(error.localizedDescription)
             }
-        }
+            .store(in: &bag)
     }
 
     static var allTests = [

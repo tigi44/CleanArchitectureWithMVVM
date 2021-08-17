@@ -9,5 +9,5 @@ import Foundation
 import Combine
 
 public protocol WeatherRepositoryInterface {
-    func fetchDailyWeather(completion: @escaping (Result<[WeatherEntity], Error>) -> Void) -> Cancellable?
+    func fetchDailyWeather() -> AnyPublisher<[WeatherEntity], Error>
 }

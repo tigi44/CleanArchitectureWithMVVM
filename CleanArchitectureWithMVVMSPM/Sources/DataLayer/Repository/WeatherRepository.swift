@@ -17,19 +17,18 @@ public final class WeatherRepository: WeatherRepositoryInterface {
         self.dataSource = dataSource
     }
     
-    public func fetchDailyWeather(completion: @escaping (Result<[WeatherEntity], Error>) -> Void) -> Cancellable? {
-        
-        return dataSource.fetchDailyWeather { result in
-            switch result {
-            case .success(let dailyWeather):
+    public func fetchDailyWeather() -> AnyPublisher<[WeatherEntity], Error> {
+        return dataSource.fetchDailyWeather()
+            .map({ weatherDTOList in
+                
                 var weatherEntities = [WeatherEntity]()
-                for weather in dailyWeather {
+                
+                for weather in weatherDTOList {
                     weatherEntities.append(weather.dto())
                 }
-                completion(.success(weatherEntities))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+                
+                return weatherEntities
+            })
+            .eraseToAnyPublisher()
     }
 }

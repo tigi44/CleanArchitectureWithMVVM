@@ -11,7 +11,9 @@ import Combine
 @testable import DomainLayer
 
 class MockFetchDailyWeatherUseCase: FetchDailyWeatherUseCaseInterface {
-    func execute(completion: @escaping (Result<[WeatherEntity], Error>) -> Void) -> Cancellable? {
+    
+    func execute() -> AnyPublisher<[WeatherEntity], Error> {
+        
         let dailyWeather = [
             WeatherEntity(id: "weather_mon", icon: "01d", location: "l", temperature: 10.1, description: "sunny", date: Date()),
             WeatherEntity(id: "weather_tue", icon: "01d", location: "l", temperature: 10.1, description: "sunny", date: Date()),
@@ -21,24 +23,17 @@ class MockFetchDailyWeatherUseCase: FetchDailyWeatherUseCaseInterface {
             WeatherEntity(id: "weather_sat", icon: "01d", location: "l", temperature: 10.1, description: "sunny", date: Date()),
             WeatherEntity(id: "weather_sun", icon: "01d", location: "l", temperature: 10.1, description: "sunny", date: Date()),
         ]
-
+        
         return Just(dailyWeather)
-            .sink { result in
-                switch result {
-                case .finished:
-                    break
-                case .failure(let error):
-                    XCTFail(error.localizedDescription)
-                }
-            } receiveValue: { dailyWeather in
-                completion(.success(dailyWeather))
-            }
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 }
 
 final class DailyWeatherViewModelTests: XCTestCase {
     
     var viewModel: DailyWeatherViewModel?
+    private var bag: Set<AnyCancellable> = Set<AnyCancellable>()
     
     //MARK: - Setup
     
@@ -58,16 +53,18 @@ final class DailyWeatherViewModelTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: self.description)
         
-        let _ = viewModel!.$dailyWeather.sink { _ in
+        viewModel!.$dailyWeather.sink { result in
             
-            expectation.fulfill()
+            if result.count > 0 {
+                XCTAssertGreaterThan(result.count, 0)
+                expectation.fulfill()
+            }
         }
+        .store(in: &bag)
         
         viewModel!.executeFetch()
         
         wait(for: [expectation], timeout: 1)
-        
-        XCTAssertGreaterThan(viewModel!.dailyWeather.count, 0)
     }
 
     static var allTests = [

@@ -6,12 +6,14 @@
 //
 
 import XCTest
+import Combine
 @testable import DataLayer
 @testable import DomainLayer
 
 final class WeatherRepositoryTests: XCTestCase {
     
     var reposotory: WeatherRepository?
+    private var bag: Set<AnyCancellable> = Set<AnyCancellable>()
     
     //MARK: - Setup
     
@@ -29,18 +31,22 @@ final class WeatherRepositoryTests: XCTestCase {
     
     func testExecute() {
         
-        let _ = reposotory!.fetchDailyWeather { result in
-            switch result {
-            case .success(let dailyWeather):
-                XCTAssertGreaterThan(dailyWeather.count, 0)
-                for weather in dailyWeather {
+        reposotory!.fetchDailyWeather()
+            .sink { receiveCompletion in
+                switch receiveCompletion {
+                case .failure(let error):
+                    XCTFail(error.localizedDescription)
+                case .finished:
+                    break
+                }
+            } receiveValue: { weatherList in
+                XCTAssertGreaterThan(weatherList.count, 0)
+                for weather in weatherList {
                     XCTAssertTrue(type(of: weather) == WeatherEntity.self)
                     XCTAssertNotNil(weather.icon)
                 }
-            case .failure(let error):
-                XCTFail(error.localizedDescription)
             }
-        }
+            .store(in: &bag)
     }
 
     static var allTests = [

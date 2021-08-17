@@ -10,21 +10,17 @@ import Combine
 import DomainLayer
 
 public protocol WeatherDataSourceInterface {
-    func fetchDailyWeather(completion: @escaping (Result<[WeatherDTO], Error>) -> Void) -> Cancellable?
+    func fetchDailyWeather() -> AnyPublisher<[WeatherDTO], Error>
 }
 
 public final class WeatherLocalDataSource: WeatherDataSourceInterface {
     
     public init() {}
     
-    public func fetchDailyWeather(completion: @escaping (Result<[WeatherDTO], Error>) -> Void) -> Cancellable? {
+    public func fetchDailyWeather() -> AnyPublisher<[WeatherDTO], Error> {
         return Just(dailyWeatherLocalData)
             .tryMap { try JSONSerialization.data(withJSONObject: $0, options: .prettyPrinted) }
             .decode(type: [WeatherDTO].self, decoder: JSONDecoder())
-            .replaceError(with: [])
             .eraseToAnyPublisher()
-            .sink { dailyWeather in
-                completion(.success(dailyWeather))
-            }
     }
 }
